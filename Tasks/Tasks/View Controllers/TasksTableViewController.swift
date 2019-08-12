@@ -11,6 +11,19 @@ import CoreData
 
 class TasksTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpApperance()
+    }
+    
+    private func setUpApperance() {
+        view.backgroundColor = AppearanceHelper.backgroundGray
+        tableView.backgroundColor = AppearanceHelper.backgroundGray
+        tableView.tableHeaderView?.backgroundColor = AppearanceHelper.backgroundGray
+    }
+    
+    // MARK: Properties
+    
     // MARK: Properties
     
     private let taskController = TaskController()
@@ -26,6 +39,12 @@ class TasksTableViewController: UITableViewController, NSFetchedResultsControlle
         
         let task = taskController.tasks[indexPath.row]
         cell.textLabel?.text = task.name
+        
+        cell.textLabel?.font = AppearanceHelper.architexFont(with: .caption1, pointSize: 30)
+        cell.detailTextLabel?.font = AppearanceHelper.architexFont(with: .caption2, pointSize: 25)
+        
+        cell.textLabel?.backgroundColor = .clear
+        cell.textLabel?.textColor = AppearanceHelper.limeGreen
         
         return cell
     }
